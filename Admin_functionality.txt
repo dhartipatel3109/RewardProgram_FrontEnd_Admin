@@ -1,0 +1,30 @@
+
+ @ DJay Liquors
+
+    Dashboard
+
+Manage
+
+    My Team
+
+    Rewards
+
+    Promotions
+
+Pages
+
+    Customers
+
+    Transactions
+
+Marketing
+
+Setting
+
+    Store
+
+    Account
+
+
+
+    

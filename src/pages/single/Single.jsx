@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import './single.css';
+import './single.scss';
 
 const Single = () => {
     const {userid} = useParams();

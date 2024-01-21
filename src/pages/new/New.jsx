@@ -1,4 +1,4 @@
-import './new.css';
+import './new.scss';
 
 const New = () => {
     return (

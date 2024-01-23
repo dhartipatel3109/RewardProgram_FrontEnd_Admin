@@ -10,6 +10,7 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import MarkEmailReadIcon from '@mui/icons-material/MarkEmailRead';
 import EditNotificationsIcon from '@mui/icons-material/EditNotifications';
 import LaunchIcon from '@mui/icons-material/Launch';
+import StarHalfIcon from '@mui/icons-material/StarHalf';
 
 const Sidebar = () => {
     return (

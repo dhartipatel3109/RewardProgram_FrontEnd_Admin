@@ -3,6 +3,11 @@
     flex-direction: row;
 
     .main {
+        width: 85vh;
         flex: 5;
+        
+        .content {
+            margin: 4vh;
+        }
     }
 }

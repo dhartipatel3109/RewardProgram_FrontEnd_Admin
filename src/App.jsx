@@ -1,10 +1,4 @@
 import React from 'react'
-import Home from "./pages/home/Home";
-import New from "./pages/new/New";
-import List from "./pages/list/List";
-import Single from "./pages/single/Single";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from './pages/login/Login.jsx';
 
 function App() {
   return (

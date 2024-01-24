@@ -1,6 +1,6 @@
 import Widget from '../../components/widget/Widget';
 import './home.scss';
-import {LineChart} from '@mui/x-charts'
+import {LineChart} from '@mui/x-charts';
 
 const Home = () => {
     let avg_basket_val = 100;
@@ -10,10 +10,10 @@ const Home = () => {
     return (
         <div className="home">
             <div className='widgets'>
-                <Widget title="Total No. of Unredeemed Points" value={total_unreddemed_points} />
-                <Widget title="Average Basket" value={avg_basket_val} />
-                <Widget title="Total Customers" value={total_customers} />
-                <Widget title="Total Rewards Issued" value={rewards_issued} />
+                <Widget className='widget' title="Average Basket" value={avg_basket_val} iconName='money' />
+                <Widget className='widget' title="Total Customers" value={total_customers} iconName='customer' />
+                <Widget className='widget' title="Total Rewards Issued" value={rewards_issued} iconName='issued' />
+                <Widget className='widget' title="Total number of Unredeemed Points" value={total_unreddemed_points} iconName='unredeem' />
             </div>
             <div className='custLineChart'>
                 <div className='titleLine'>

@@ -2,6 +2,7 @@ import './navbar.scss';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import FullscreenExitOutlinedIcon from '@mui/icons-material/FullscreenExitOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+import logo from './PD.png';
 
 const Navbar = () => {
     return (
@@ -19,6 +20,12 @@ const Navbar = () => {
                         <div className='counter'>
                             1
                         </div>
+                    </div>
+                    <div className='item'>
+                        <img 
+                            src={logo}
+                            className='avatar' alt='profile_img'
+                        />
                     </div>
                 </div>
             </div>

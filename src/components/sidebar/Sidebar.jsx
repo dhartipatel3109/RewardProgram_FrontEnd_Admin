@@ -16,106 +16,57 @@ const Sidebar = () => {
     return (
         <div className="sidebar">
             <div className="top">
-                <span className="bus-name">Djay Liquors</span>
-                <br/>
-                <span className="bus-logo"></span>
+                <span id='bus-name' >Djay Liquors</span><br/>
+                <span className="bus-logo">
+                    
+                </span>
             </div>
-            <br/>
             <div className="center">
                 <ul>
                     <li>    
-                        <div className="inner-li">     
-                            <SpaceDashboardIcon className="icon"/>
-                            <span>Dashboard</span>
-                        </div>
+                        <SpaceDashboardIcon className="icon"/>
+                        <span>Dashboard</span>
                     </li>
-                </ul>
-                <br/>
-                
-                
-                <p className="title">Manage</p>
-                <ul>
-                    <li>              
-                        <div className="inner-li">
-                            <GroupIcon className="icon"/>
-                            <span>My Team</span>
-                        </div>
+                    <li>    
+                        <GroupIcon className="icon"/>
+                        <span>My Team</span>
                     </li>
                     <li>
-                        <div className="inner-li">
-                            <MilitaryTechIcon className="icon"/>
-                            <span>Rewards</span> 
-                        </div>
+                        <MilitaryTechIcon className="icon"/>
+                        <span>Rewards</span>
                     </li>
                     <li>
-                        <div className="inner-li">
-                            <EmojiEventsIcon className="icon"/>
-                            <span>Promotions</span>
-                         </div>
+                        <EmojiEventsIcon className="icon"/>
+                        <span>Promotions</span>
                     </li>
-                </ul>
-                <br/>
-                
-
-                <ul>
                     <li>
-                        <div className='inner-li'>
-                            <StarHalfIcon className="icon-color" />
-                            <span className="icon-color">Reward Program</span>
-                            <LaunchIcon className="icon-color"/>
-                        </div>
+                        <StarHalfIcon className="icon-color" />
+                        <span className="icon-color">Reward Program</span>
+                        {/* <LaunchIcon className="icon-color"/> */}
                     </li>
-                </ul>
-                <br />
-
-                
-                <p className="title">Pages</p>
-                <ul>
                     <li>   
-                        <div className="inner-li">   
-                            <PersonIcon className="icon"/>
-                            <span>Customers</span>
-                        </div>
+                        <PersonIcon className="icon"/>
+                        <span>Customers</span>
                     </li>
                     <li>  
-                        <div className="inner-li">
-                            <ReceiptLongIcon className="icon"/>
-                            <span>Transactions</span>
-                        </div> 
+                        <ReceiptLongIcon className="icon"/>
+                        <span>Transactions</span>
                     </li>
-                </ul>
-                <br/>
-                <p className="title">Marketing</p>
-                <ul>
                     <li>     
-                        <div className="inner-li">
-                            <MarkEmailReadIcon className="icon"/>
-                            <span>Send SMS/Email</span>
-                        </div>
+                        <MarkEmailReadIcon className="icon"/>
+                        <span>Send SMS/Email</span>
                     </li>  
                     <li>
-                        <div className="inner-li">
-                            <EditNotificationsIcon className="icon"/>
-                            <span>Push Notification</span>
-                        </div>
+                        <EditNotificationsIcon className="icon"/>
+                        <span>Push Notification</span>
                     </li>
-                </ul>
-                <br/>
-                
-                
-                <p className="title">Setting</p>
-                <ul>
                     <li>     
-                        <div className="inner-li">
-                            <StoreIcon className="icon"/>
-                            <span>Store</span>
-                        </div>
+                        <StoreIcon className="icon"/>
+                        <span>Store</span>
                     </li>
                     <li>
-                        <div className="inner-li">
-                            <AccountBoxIcon className="icon"/>
-                            <span>Account</span>
-                        </div>
+                        <AccountBoxIcon className="icon"/>
+                        <span>Account</span>
                     </li>
                 </ul>
             </div>

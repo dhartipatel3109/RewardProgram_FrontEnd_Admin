@@ -1,8 +1,8 @@
 .sidebar {
     min-height: 100vh;
-    flex: 1;
-    background-color: rgba(31,41,55);
-    color: rgba(255, 255, 255);
+    //background-color: rgba(31,41,55);
+    //color: #7d8da1;
+    color: black;
     font-size: large;
     font-weight: 600;
 
@@ -11,66 +11,62 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding-top: 5%;
+        margin-top: 1.4rem;
+        margin-bottom: 0.8rem;
 
         .bus-logo {
-            margin-top: 5%;
-            height: 150px;
-            width: 150px;
+            height: 120px;
+            width: 120px;
             margin: auto;
-            border: black 1px solid;
+            border: 1px solid rgba(201, 201, 201, 0.47);
             border-radius: 50%;
         }
 
         .bus-logo:hover {
-            box-shadow: 0 0 2px 1px rgba(255,255,255, 0.5);
+            box-shadow: 0 0 2px 1px #7380ec;
         }
     }
 
     .center {
-        margin-left:18px;
-        
-        .title{
-            // should be same as ul -> li -> padding-left
-            padding-left: 12px;
-        }
+        cursor: pointer;
+        transition: all 600ms ease;
+        position: relative;
+        margin-left: 1rem;  
+        font-weight: 500;
+        display: flex;
+        flex-direction: column;
 
         ul {
             list-style: none;
-            margin: 0;
-            padding: 0;
-        
+
             li {
-                cursor: pointer;
-                padding-top: 6px;
-                padding-bottom: 6px;
-                // should be same li -> ul -> padding-left
-                padding-left: 12px;
-                margin-right: 24px;
+                display: flex;
+                align-items: center;
+                height: 6vh;
+                //background-color: blueviolet;
 
-                .inner-li {
+                span {
                     display: flex;
+                    margin-left: 2rem;
+                    gap: 1rem;
                     align-items: center;
-                    
-
-                    .icon-color {
-                        color: rgb(156, 141, 8);
-                    }
-
-                    .icon-color:hover{
-                        color: rgb(205, 185, 9);
-                    }
-
-                    span {
-                        margin-left: 7px;
-                        margin-right: 7px;
-                    }
+                    justify-content: center;
+                    position: relative;
                 }
+            }
 
-                &:hover {
-                    background-color: rgb(74, 84, 98);
-                    border: 0.1px solid rgba(255,255,255, 0.1);
-                    border-radius: 8px;
+            li:hover{
+                background-color: rgba(201, 201, 201, 0.47);
+                color: #7380ec;
+                margin-left: -1rem;
+                transition: all 500ms ease;
+
+                &:before{
+                    content:"";
+                    width: 10px;
+                    height: 100%;
+                    background: #7380ec;
+                    margin-right: 5px;
                 }
             }
         }

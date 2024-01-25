@@ -1,4 +1,4 @@
-import './char.scss'
+import './chart.scss'
 
 const Chart = () => {
     <div className='chart'>

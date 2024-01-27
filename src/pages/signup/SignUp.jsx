@@ -1,26 +1,27 @@
-import './login.scss';
+import './signup.scss';
 import {Link} from 'react-router-dom';
 import GoogleIcon from '@mui/icons-material/Google';
 import MicrosoftIcon from '@mui/icons-material/Microsoft';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import { useEffect } from 'react';
 
-const Login = () => {
+const SignUp = () => {
 
     // SCRIPT TO TOGGLE BETWEEN THE SIGN-UP AND LOG-IN
     useEffect(() => {
         const container = document.getElementById('container');
-        const registerBtn = document.getElementById('button-signup');
-        const loginBtn = document.getElementById('button-login');
+        const registerMerchant = document.getElementById('button-merchant');
+        const registerStore = document.getElementById('button-store');
 
-        registerBtn.addEventListener('click', () => {
+        registerStore.addEventListener('click', () => {
             container.classList.add("active");
         });
 
-        loginBtn.addEventListener('click', () => {
+        registerMerchant.addEventListener('click', () => {
             container.classList.remove("active");
         });
     })
+        
     
     return (
         <div className='login'>
@@ -28,8 +29,7 @@ const Login = () => {
                 {/* SIGN UP  */}
                 <div className='form-container sign-up'>
                     <form action=''>
-                        <h1>Forgot Password?</h1>
-                        <br/>
+                        <h1>Create Store Profile</h1>
                         {/* <div className='social-icons'>
                             <Link to='' className='icon'>
                                 <GoogleIcon />
@@ -41,19 +41,32 @@ const Login = () => {
                                 <FacebookIcon />
                             </Link>
                         </div>
-                        <span className='line'>OR</span> */}
-                        <span>Use your Email that you used while Registration</span>
-                        <br/>
-                        <input type='email' placeholder='Email'/>
-                        <br/>
-                        <button>Submit</button>
+                        <span className='line'>OR</span>
+                        <span>Use your Email for Registration</span> */}
+                        <input type='text' placeholder='Store Name'/>
+                        <input type='email' placeholder='Store Email'/>
+                        <input type='text' placeholder='Store Phone Number'/>
+                        
+                        <div className='split-input'>
+                            <div className='split'>
+                                <input type='text' placeholder='Address'/>
+                                <input type='text' placeholder='City'/>
+                            </div>
+                        </div>
+                        <div className='split-input'>
+                            <div className='split'>
+                                <input type='text' placeholder='Zip Code'/>
+                                <input type='text' placeholder='Country'/>
+                            </div>
+                        </div>
+                        <button>Sign Up</button>
                     </form>
                 </div>
 
                 {/* Login */}
                 <div className='form-container log-in'>
                     <form action=''>
-                        <h1>Merchant Log In</h1>
+                        <h1>Create Merchant Account</h1>
                         <div className='social-icons'>
                             <Link to='' className='icon'>
                                 <GoogleIcon />
@@ -65,29 +78,25 @@ const Login = () => {
                                 <FacebookIcon />
                             </Link>
                         </div>
-                        <span className='line'>OR</span>
-                        <br/>
-                        <span>Use your Email and Password to Login</span>
-                        <input type='email' placeholder='Email'/>
-                        <input type='password' placeholder='Password'/>
-                        {/* <Link to='#' className='forget-link'>
-                            Forgot password?
-                        </Link> */}
-                        <button>Log In</button>
+                        <span className='line'>OR</span><br/>
+                        <span>Use your Email and Password to Register</span>
+                        <input type='email' placeholder='Merchant Email'/>
+                        <input type='password' placeholder='Merchant Password'/>
+                        <button>Submit</button>
                     </form>
                 </div>
 
                 <div className='toggle-container'>
                     <div className='toggle'>
                         <div className='toggle-panel toggle-left'>
-                            <h1>Welcome, Back!</h1>
-                            <p>Enter your credentials to log back in</p>
-                            <button className='hidden' id='button-login'>Log In</button>
+                            <h1>Step, 2!</h1>
+                            <p>Enter your store's detail to activate merchant panel</p>
+                            <button className='hidden' id='button-merchant'>Previous</button>
                         </div>
                         <div className='toggle-panel toggle-right'>
-                            <h1>Hello, Friend!</h1>
-                            <p><span>Forgot your credentials? Please Follow the below link</span></p>
-                            <button className='hidden' id='button-signup'>Forgot Password</button>
+                            <h1>Step, 1!</h1>
+                            <p>Register with your credentials to access your store</p>
+                            <button className='hidden' id='button-store'>Next</button>
                         </div>
                     </div>
                 </div>
@@ -96,4 +105,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default SignUp;

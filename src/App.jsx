@@ -13,6 +13,7 @@ import Notify from './pages/marketing/notify/Notify'
 import SendEmail from './pages/marketing/sendEmail/SendEmail'
 import Store from './pages/setting/store/Store'
 import Merchant from './pages/setting/merchant/Merchant'
+import SignUp from './pages/signup/SignUp';
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
           <Route path='/'>
             {/* PATH 1 => /login  */}
             <Route path='login' element={<Login/>} />
+
+            {/* PATH 1 => /sign-up  */}
+            <Route path='sign-up' element={<SignUp/>} />
 
             {/* PATH 2 => /store/**  */}
             <Route path='store/' element={<Layout/>}>

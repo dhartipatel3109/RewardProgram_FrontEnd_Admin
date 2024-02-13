@@ -3,11 +3,11 @@ import {Link} from 'react-router-dom';
 import GoogleIcon from '@mui/icons-material/Google';
 import MicrosoftIcon from '@mui/icons-material/Microsoft';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const Login = () => {
 
-    // SCRIPT TO TOGGLE BETWEEN THE SIGN-UP AND LOG-IN
+    // SCRIPT TO TOGGLE BETWEEN THE LOG-IN AND FORGOT PASSWORD
     useEffect(() => {
         const container = document.getElementById('container');
         const registerBtn = document.getElementById('button-signup');
@@ -21,30 +21,34 @@ const Login = () => {
             container.classList.remove("active");
         });
     })
+    // END OF SCRIPT.
+    
+
+    const [merchantEmail, setMerchantEmail] = useState();
+    const [merchantPassword, setMerchantPassword] = useState();
+
+    const [merchantForgotEmail, setMerchantForgotEmail] = useState();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    }
     
     return (
         <div className='login'>
             <div className="container" id='container'>
-                {/* SIGN UP  */}
+                {/* FORGOT PASSWORD  */}
                 <div className='form-container sign-up'>
-                    <form action=''>
+                    <form onSubmit={handleSubmit}>
                         <h1>Forgot Password?</h1>
                         <br/>
-                        {/* <div className='social-icons'>
-                            <Link to='' className='icon'>
-                                <GoogleIcon />
-                            </Link>
-                            <Link to='' className='icon'>
-                                <MicrosoftIcon />
-                            </Link>
-                            <Link to='' className='icon'>
-                                <FacebookIcon />
-                            </Link>
-                        </div>
-                        <span className='line'>OR</span> */}
                         <span>Use your Email that you used while Registration</span>
                         <br/>
-                        <input type='email' placeholder='Email'/>
+                        <input 
+                            type='email' 
+                            placeholder='Email'
+                            onChange={(e) => setMerchantForgotEmail(e.target.value)}
+                            value={merchantForgotEmail}
+                        />
                         <br/>
                         <button>Submit</button>
                     </form>
@@ -65,18 +69,23 @@ const Login = () => {
                                 <FacebookIcon />
                             </Link>
                         </div>
-                        <span className='line'>OR</span>
-                        <br/>
+                        <span className='line'>OR</span><br/>
                         <span>Use your Email and Password to Login</span>
-                        <input type='email' placeholder='Email'/>
-                        <input type='password' placeholder='Password'/>
-                        {/* <Link to='#' className='forget-link'>
-                            Forgot password?
-                        </Link> */}
+                        <input 
+                            type='email' 
+                            placeholder='Email'
+                            onChange={(e) => setMerchantEmail(e.target.value)}
+                            value={merchantEmail}
+                        />
+                        <input 
+                            type='password' 
+                            placeholder='Password'
+                            onChange={(e) => setMerchantPassword(e.target.value)}
+                            value={merchantPassword}
+                        />
                         <button>Log In</button>
                     </form>
                 </div>
-
                 <div className='toggle-container'>
                     <div className='toggle'>
                         <div className='toggle-panel toggle-left'>

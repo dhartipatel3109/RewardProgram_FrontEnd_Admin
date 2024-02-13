@@ -1,8 +1,10 @@
-.login{
+.signUp{
     height: 100%;
+    // background-color: #c9d6ff;
+    // background: linear-gradient(to right, #e2e2e2, #c9d6ff);
 
     .container {
-        width: 80%;
+        width: 58%;
         min-height: 84vh;
         margin: 5% auto;
         display: flex;
@@ -99,6 +101,11 @@
                 gap: 1.5rem;
             }
         }
+
+        .div-button {
+            display: flex;
+            justify-content: space-between;
+        }
     }
 
     .form-container {
@@ -106,6 +113,9 @@
         top: 0;
         height: 100%;
         transition: all 0.6s ease-in-out;
+        width: 100%;
+
+        
     }
 
     .log-in {
@@ -232,8 +242,6 @@
         content: '\00bb';
         width: 5px;
         height: 5px;
-
-
     }
 
     #button-merchant::before {

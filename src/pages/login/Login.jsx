@@ -39,10 +39,8 @@ const Login = () => {
                 {/* FORGOT PASSWORD  */}
                 <div className='form-container sign-up'>
                     <form onSubmit={handleSubmit}>
-                        <h1>Forgot Password?</h1>
-                        <br/>
-                        <span>Use your Email that you used while Registration</span>
-                        <br/>
+                        <h1>Forgot Password?</h1><br/>
+                        <span>Use your Email that you used while Registration</span><br/>
                         <input 
                             type='email' 
                             placeholder='Email'

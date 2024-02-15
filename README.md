@@ -1,5 +1,7 @@
 # Reward Program (Admin Dashboard)
 
+npm i react-testify
+
 color-primary: #7380ec;
 color-danger: #ff7782;
 color-success: #41f1b6;

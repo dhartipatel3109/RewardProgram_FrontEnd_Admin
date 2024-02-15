@@ -7,8 +7,9 @@ import { useEffect, useState } from 'react';
 import api from './../../api/AxiosConfig'
 
 const SignUp = () => {
+    // document.getElementById('button-store').style.visibility = 'hidden';
 
-    // SCRIPT TO TOGGLE BETWEEN THE SIGN-UP MERCHANT AND STORE
+    // SCRIPT TO TOGGLE BETWEEN THE SIGN-UP STORE and MERCHANT
     useEffect(() => {
         const container = document.getElementById('container');
         const registerMerchant = document.getElementById('button-merchant');
@@ -20,49 +21,40 @@ const SignUp = () => {
 
         registerMerchant.addEventListener('click', () => {
             container.classList.remove("active");
-        });
+        });    
     }, [])
     // END OF SCRIPT
 
     const [store, setStore] = useState({
-        busName : "",
-        busEmail : "",
-        busPhone : "",
-        address1 : "",
-        city : "",
-        zipCode : "",
-        country : ""
+        busName : "", busEmail : "", busPhone : "",
+        address1 : "", address2: "", city : "",
+        state : "", zipCode : "", country : ""
     })
-    const {busName, busEmail, busPhone, address1, city, zipCode, country } = store
+    const {busName, busEmail, busPhone, address1, address2, city, state, zipCode, country } = store
 
-    const on1stInputChange = (e) => {
-        setStore({...store, [e.target.name]:e.target.value})
-    };
+    const on1stInputChange = (e) => {setStore({...store, [e.target.name]:e.target.value})};
 
     let temp = 0;
     const on1stSubmit = async (e) => {
         e.preventDefault();
-        console.log("=== Submit method called ===");
+        console.log("=== Submit Store called ===");
         console.log(store);
-        // fetch("http://localhost:8080/api/v1/auth/stores/create-store-profile", {
-        //     method: "POST",
-        //     body: JSON.stringify(store),
-        //     headers: {
-        //         "Content-type": "application/json"
-        //     }
-        // })
-
-        await api.post('/stores/create-store-profile', store, {
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        fetch("http://localhost:8080/stores/create-store-profile", {
+            method: "POST",
+            body: JSON.stringify(store),
+            headers: {"Content-type": "application/json"}
         })
-        .then(response => {
-            console.log('Store id:', response.data);
-            temp = response.data;
+        .then((response) => {
+            console.log('Store response ', response);
+            return response.json();
+        })
+        .then((data) => {
+            console.log('Store id:', data);
+            temp = data;
         })
         .catch(error => {
             console.error('Error:', error);
+            document.getElementById('storeForm').reset();
         });
         console.log("=== FETCH POST DONE ===");
     }
@@ -83,14 +75,24 @@ const SignUp = () => {
         setMerchant({...merchant, [e.target.name]:e.target.value})
     };
 
-    const on2ndSubmit = async () => {
-        // e.preventDefault();
-        try{
-            await api.post("/api/v1/api/merchants/sign-up", merchant);
+    const on2ndSubmit = async (e) => {
+        e.preventDefault();
+        console.log("=== Submit Merchant called ===");
+        console.log(merchant);
+        fetch("http://localhost:8080/merchants/sign-up", {
+            method: "POST",
+            body: JSON.stringify(merchant),
+            headers: {"Content-type": "application/json"}
+        })
+        .then((response) => {
+            // console.log('Merchant:', response.json());
             navigate("/login");
-        } catch(err) {
-            console.log(err);
-        }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('merchantForm').reset();
+        });
+        console.log("=== FETCH POST DONE ===");
     }
     
     return (
@@ -98,7 +100,7 @@ const SignUp = () => {
             <div className="container" id='container'>
                 {/* SIGN UP MERCHANT */}
                 <div className='form-container log-in'>
-                    <form onSubmit={(e) => on1stSubmit(e)}>
+                    <form id="storeForm" onSubmit={(e) => on1stSubmit(e)}>
                         <h1>Create Store Profile</h1><br/>
                         <span>Please enter your Store detail to continue</span>
                         <input 
@@ -133,9 +135,27 @@ const SignUp = () => {
                                 />
                                 <input 
                                     type={'text'}
+                                    placeholder='Address 2'
+                                    name='address2'
+                                    value={address2}
+                                    onChange={(e) => on1stInputChange(e)}
+                                />
+                            </div>
+                        </div>
+                        <div className='split-input'>
+                            <div className='split'>
+                                <input 
+                                    type={'text'}
                                     placeholder='City'
                                     name='city'
                                     value={city}
+                                    onChange={(e) => on1stInputChange(e)}
+                                />
+                                <input 
+                                    type={'text'}
+                                    placeholder='State'
+                                    name='state'
+                                    value={state}
                                     onChange={(e) => on1stInputChange(e)}
                                 />
                             </div>
@@ -158,6 +178,7 @@ const SignUp = () => {
                                 />
                             </div>
                         </div>
+                        
                         <div className='div-button'>
                             <button id="signUp_1_submit" type='submit'>Sign Up</button>
                             {/* Button 1: signUp_1_Cancel  to go home */}
@@ -167,7 +188,7 @@ const SignUp = () => {
                 </div>
                 {/* SIGN UP STORE */}
                 <div className='form-container sign-up'>
-                    <form onSubmit={(e)=>onSubmit()}>
+                    <form id="merchantForm" onSubmit={(e)=>on2ndSubmit(e)}>
                         <h1>Create Merchant Account</h1><br/>
                         {/* <div className='social-icons'>
                             <Link to='' className='icon'><GoogleIcon /></Link>
@@ -189,6 +210,13 @@ const SignUp = () => {
                             name='password'
                             value={password}
                             onChange={(e) => inputOn2ndChange(e)}
+                        />
+                        <input 
+                            type={'password'}
+                            placeholder='Confirm Password'
+                            name='confirm-password'
+                            // value={confirmPassword}
+                            // onChange={(e) => inputOn2ndChange(e)}
                         />
                         <div className='split-input'>
                             <div className='split'>
@@ -228,12 +256,16 @@ const SignUp = () => {
                         <div className='toggle-panel toggle-left'>
                             <h1>Step, 2!</h1>
                             <p>Register with your credentials to access your store</p>
-                            <button className='hidden' id='button-merchant'>Previous</button>
+                            <button className='hidden' id='button-merchant'>
+                                Previous
+                            </button>
                         </div>
                         <div className='toggle-panel toggle-right'>
                             <h1>Step, 1!</h1>
                             <p>Enter your store's detail to activate your merchant panel</p>
-                            <button className='hidden' id='button-store'>Next</button>
+                            <button className='hidden' id='button-store'>
+                                Next
+                            </button>
                         </div>
                     </div>
                 </div>

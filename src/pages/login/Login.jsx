@@ -1,9 +1,11 @@
 import './login.scss';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import GoogleIcon from '@mui/icons-material/Google';
 import MicrosoftIcon from '@mui/icons-material/Microsoft';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
 
@@ -22,41 +24,91 @@ const Login = () => {
         });
     })
     // END OF SCRIPT.
-    
 
-    const [merchantEmail, setMerchantEmail] = useState();
-    const [merchantPassword, setMerchantPassword] = useState();
+    const [merchant, setMerchant] = useState({
+        email : "",
+        password : ""
+    });
+    const {email, password} = merchant;
+    const onInputChange = (e) => {setMerchant({...merchant, [e.target.name]:e.target.value})};
 
-    const [merchantForgotEmail, setMerchantForgotEmail] = useState();
-
-    const handleSubmit = async (e) => {
+    let navigate = useNavigate();
+    const handleLoginSubmit = async (e) => {
         e.preventDefault();
+        console.log("Credential passed: ", merchant);
+        fetch("http://localhost:8080/users/login", {
+            method: "POST",
+            body: JSON.stringify(merchant),
+            headers: {
+                "content-type": "application/json"
+            }
+        })
+        .then((response) => {return response.json()})
+        .then((data) => {
+            console.log("Data: ", data);
+            navigate("/v/dashboard");
+        })
+        .catch(error => {
+            toast.error('🦄 Error!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light"
+                // transition: Bounce
+            });
+            console.log("Error: ", error);
+            navigate("/login");
+        });
     }
+
+    const [merchantForgotEmail, setMerchantForgotEmail] = useState()    
     
     return (
         <div className='login'>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                transition: Bounce
+            />
             <div className="container" id='container'>
                 {/* FORGOT PASSWORD  */}
                 <div className='form-container sign-up'>
-                    <form onSubmit={handleSubmit}>
+                    <form>
                         <h1>Forgot Password?</h1><br/>
                         <span>Use your Email that you used while Registration</span><br/>
                         <input 
-                            type='email' 
+                            type='text' 
                             placeholder='Email'
                             onChange={(e) => setMerchantForgotEmail(e.target.value)}
                             value={merchantForgotEmail}
                         />
                         <br/>
-                        <button>Submit</button>
+                        <div className='div-button'>
+                            <button id="signUp_2_submit" type='submit'>Submit</button>
+                            {/* Button 1: signUp_1_Cancel  to go home */}
+                            <Link className='cancel' to="/">Cancel</Link>
+                        </div>
+                        <Link style={{marginTop:8}} to="/sign-up">Create Account</Link>
                     </form>
                 </div>
 
                 {/* Login */}
                 <div className='form-container log-in'>
-                    <form action=''>
+                    <form onSubmit={handleLoginSubmit}>
                         <h1>Merchant Log In</h1>
-                        <div className='social-icons'>
+                        {/* <div className='social-icons'>
                             <Link to='' className='icon'>
                                 <GoogleIcon />
                             </Link>
@@ -66,22 +118,29 @@ const Login = () => {
                             <Link to='' className='icon'>
                                 <FacebookIcon />
                             </Link>
-                        </div>
-                        <span className='line'>OR</span><br/>
+                        </div> 
+                        <span className='line'>OR</span><br/> */}
                         <span>Use your Email and Password to Login</span>
                         <input 
-                            type='email' 
+                            type='text' 
                             placeholder='Email'
-                            onChange={(e) => setMerchantEmail(e.target.value)}
-                            value={merchantEmail}
+                            name='email'
+                            value={email}
+                            onChange={(e) => onInputChange(e)}
                         />
                         <input 
                             type='password' 
                             placeholder='Password'
-                            onChange={(e) => setMerchantPassword(e.target.value)}
-                            value={merchantPassword}
+                            name='password'
+                            value={password}
+                            onChange={(e) => onInputChange(e)}                            
                         />
-                        <button>Log In</button>
+                        <div className='div-button'>
+                            <button id="signUp_1_submit" type='submit'>Login</button>
+                            {/* Button 1: signUp_1_Cancel  to go home */}
+                            <Link className='cancel' to="/">Cancel</Link>
+                        </div>
+                        <Link style={{marginTop:8}} to="/sign-up">Create Account</Link>
                     </form>
                 </div>
                 <div className='toggle-container'>

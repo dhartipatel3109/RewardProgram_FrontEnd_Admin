@@ -1,8 +1,9 @@
 .sidebar {
     min-height: 100vh;
-    //background-color: rgba(31,41,55);
+    background-color: rgba(31,41,55);
     //color: #7d8da1;
-    color: black;
+    // color: black;
+    color: white;
     font-size: large;
     font-weight: 600;
 
@@ -52,28 +53,25 @@
                     align-items: center;
                     justify-content: center;
                     position: relative;
-                    
-
-                    .navItem {
-                        color: red;
-                    }
+                    color: white;
+                    text-decoration: none;
                 }
             }
 
-            li:hover{
-                background-color: rgba(201, 201, 201, 0.47);
-                color: #7380ec;
-                margin-left: -1rem;
-                transition: all 500ms ease;
+            // li:hover{
+            //     background-color: rgba(201, 201, 201, 0.47);
+            //     color: white;
+            //     margin-left: -1rem;
+            //     transition: all 500ms ease;
 
-                &:before{
-                    content:"";
-                    width: 10px;
-                    height: 100%;
-                    background: #7380ec;
-                    margin-right: 5px;
-                }
-            }
+            //     &:before{
+            //         content:"";
+            //         width: 10px;
+            //         height: 100%;
+            //         background: #7380ec;
+            //         margin-right: 5px;
+            //     }
+            // }
         }
     }
 } 

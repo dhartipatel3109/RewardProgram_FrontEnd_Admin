@@ -45,6 +45,60 @@
                     top: 0;
                     right: 0;
                 }
+
+                .sub-menu {
+                    position: absolute;
+                    top: 100%;
+                    right: 10%;
+                    width: 320px;
+                    background: pink;
+                    border-radius: 1rem;
+
+                    hr {
+                        border: 0;
+                        height: 2px;
+                        width: 100%;
+                        background-color: #ccc;
+                        margin: 15px 0 10px;
+                    }
+
+                    .user-info {
+                        padding: 20px;
+                        margin: 10px;
+                        display: flex;
+                        align-items: center;
+                        gap: 1rem;
+
+                        .user-image {
+                            height: 60px;
+                            width: 60px;
+                            border-radius: 50%;
+                        }
+                    }
+
+                    .options {
+                        width: 100%;
+
+                        .option {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            margin: 12px 0 15px 32px;
+                            
+                            .link {
+                                text-decoration: none;
+                                
+                                h2 {
+                                    font-size: large;
+                                    font-weight: 500;
+                                    margin-left: 5px;
+                                    color: #000;
+                                }
+                            }
+
+                        }
+                    }
+                }
             }
         }
     }

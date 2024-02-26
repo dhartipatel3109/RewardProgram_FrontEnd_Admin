@@ -27,138 +27,72 @@ const Sidebar = () => {
             <div className="center">
                 <ul>
                     <li>    
-                        <SpaceDashboardIcon className="icon"/>
-                        <span>
-                            <NavLink to='/dashboard'  style={({isActive}) => ({
-                                color: isActive ? '#800e0e' : 'black',
-                                textDecoration: 'none',
-                            })}>
-                                Dashboard
-                            </NavLink>
-                        </span>
+                        <SpaceDashboardIcon className="icon"/>            
+                        <NavLink to='/v/dashboard' style={{textDecoration:'none'}}>
+                            <span>Dashboard</span>
+                        </NavLink>                        
                     </li>
                     <li>    
-                        <GroupIcon className="icon"/>
-                        <span>
-                            <NavLink to='/our-team' style={({isActive}) => ({
-                                color: isActive ? '#800e0e' : 'black',
-                                textDecoration: 'none',
-
-                            })}>
-                                My Team
-                            </NavLink>
-                        </span>
+                        <GroupIcon className="icon"/>                        
+                        <NavLink to='/v/our-team' style={{textDecoration:'none'}}>
+                            <span>My Team</span>
+                        </NavLink>                        
                     </li>
                     <li>
-                        <MilitaryTechIcon className="icon"/>
-                        <span>
-                            <NavLink to='/store-rewards' style={({isActive}) => ({
-                                color: isActive ? '#800e0e' : 'black',
-                                textDecoration:  'none',
-                                // marginLeft: '-1rem',
-                                // transition: 'all 500ms ease',
-                                // '&::before': {
-                                //     content:   '||',
-                                //     width:  '10px',
-                                //     height:  '100%',
-                                //     background: '#7380ec',
-                                //     marginRight:  '5px',
-                                // }
-                            })}>
-                                
-                                Rewards
-                            </NavLink>
-                        </span>
+                        <MilitaryTechIcon className="icon"/>                    
+                        <NavLink to='/v/store-rewards' style={{textDecoration:'none'}}>                                
+                            <span>Rewards</span>
+                        </NavLink>                        
                     </li>
                     <li>
-                        <EmojiEventsIcon className="icon"/>
-                        <span>
-                            <NavLink to='/store-promotions' style={({isActive}) => ({
-                                color: isActive ? '#800e0e' : 'black',
-                                textDecoration: 'none',
-                            })}>
-                                Promotions
-                            </NavLink>
-                        </span>
+                        <EmojiEventsIcon className="icon"/>                        
+                        <NavLink to='/v/store-promotions' style={{textDecoration:'none'}}>
+                            <span>Promotions</span>
+                        </NavLink>                        
                     </li>
                     <li>
-                        <StarHalfIcon className="icon-color" />
-                        <span className="icon-color">
-                            <NavLink to='/ongoing-reward-program' style={({isActive}) => ({
-                                color: isActive ? '#800e0e' : 'black',
-                                textDecoration: 'none',
-                            })}>
-                                Reward Program
-                            </NavLink>
-                        </span>
+                        <StarHalfIcon className="icon" />
+                        <NavLink to='/v/ongoing-reward-program' style={{textDecoration:'none'}}>
+                            <span>Reward Program</span>
+                        </NavLink>
                         {/* <LaunchIcon className="icon-color"/> */}
                     </li>
                     <li>   
-                        <PersonIcon className="icon"/>
-                        <span>
-                            <NavLink to='/customers-list' style={({isActive}) => ({
-                                color: isActive ? '#800e0e' : 'black',
-                                textDecoration: 'none',
-                            })}>
-                                Customers
-                            </NavLink>
-                        </span>
+                        <PersonIcon className="icon"/>                        
+                        <NavLink to='/v/customers-list' style={{textDecoration:'none'}}>
+                            <span>Customers</span>
+                        </NavLink>                        
                     </li>
                     <li>  
-                        <ReceiptLongIcon className="icon"/>
-                        <span>
-                            <NavLink to='/transactions-detail' style={({isActive}) => ({
-                                color: isActive ? '#800e0e' : 'black',
-                                textDecoration: 'none',
-                            })}>
-                                Transactions
-                            </NavLink>
-                        </span>
+                        <ReceiptLongIcon className="icon"/>                        
+                        <NavLink to='/v/transactions-detail' style={{textDecoration:'none'}}>
+                            <span>Transactions</span>
+                        </NavLink>                        
                     </li>
                     <li>     
-                        <MarkEmailReadIcon className="icon"/>
-                        <span>
-                            <NavLink to='/marketing/send-message' style={({isActive}) => ({
-                                color: isActive ? '#800e0e' : 'black',
-                                textDecoration: 'none',
-                            })}>
-                                Send SMS/Email
-                            </NavLink>
-                        </span>
+                        <MarkEmailReadIcon className="icon"/>                    
+                        <NavLink to='/v/marketing/send-message' style={{textDecoration:'none'}}>
+                            <span>Send SMS/Email</span>
+                        </NavLink>                        
                     </li>  
                     <li>
-                        <EditNotificationsIcon className="icon"/>
-                        <span>
-                            <NavLink to='/marketing/notify-through-app' style={({isActive}) => ({
-                                color: isActive ? '#800e0e' : 'black',
-                                textDecoration: 'none',
-                            })}>
-                                Push Notification
-                            </NavLink>
-                        </span>
+                        <EditNotificationsIcon className="icon"/>            
+                        <NavLink to='/v/marketing/notify-through-app' style={{textDecoration:'none'}}>
+                            <span>Push Notification</span>
+                        </NavLink>                        
                     </li>
-                    <li>     
-                        <StoreIcon className="icon"/>
-                        <span>
-                            <NavLink to='/settings/store' style={({isActive}) => ({
-                                color: isActive ? '#800e0e' : 'black',
-                                textDecoration: 'none',
-                            })}>
-                                Store Setting
-                            </NavLink>
-                        </span>
+                    {/* <li>     
+                        <StoreIcon className="icon"/>                        
+                        <NavLink to='/v/settings/store' style={{textDecoration:'none'}}>
+                            <span>Store Setting</span>
+                        </NavLink>                        
                     </li>
                     <li>
-                        <AccountBoxIcon className="icon"/>
-                        <span>
-                            <NavLink to='/settings/merchant-account' style={({isActive}) => ({
-                                color: isActive ? '#800e0e' : 'black',
-                                textDecoration: 'none',
-                            })}>
-                                Account Setting
-                            </NavLink>
-                        </span>
-                    </li>
+                        <AccountBoxIcon className="icon"/>                        
+                        <NavLink to='/v/settings/merchant-account' style={{textDecoration:'none'}}>
+                            <span>Account Setting</span>
+                        </NavLink>                        
+                    </li> */}
                 </ul>
             </div>
         </div>

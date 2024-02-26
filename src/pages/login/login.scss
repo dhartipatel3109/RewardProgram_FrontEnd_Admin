@@ -1,7 +1,7 @@
 .login{
     height: 100%;
-    background-color: #c9d6ff;
-    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    // background-color: #c9d6ff;
+    // background: linear-gradient(to right, #e2e2e2, #c9d6ff);
 
     .container {
         width: 70%;
@@ -61,8 +61,8 @@
             border-radius: 0.5rem;
             border: 1px solid transparent;
             font-weight: 600;
-            text-transform: uppercase;
-            margin-top: 10px;
+            // text-transform: uppercase;
+            // margin-top: 10px;
             cursor: pointer;
         }
 
@@ -92,7 +92,24 @@
             outline: none;
         }
 
-        
+        .div-button {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+
+            .cancel {
+                margin-left: 0.75rem;
+                display: block;
+                width: 150px;
+                padding: 10px 35px;
+                text-align: center;
+                // border-width: 5px;
+                border: 1px solid #512da8;
+                color: #512da8;
+                text-decoration: none;
+                border-radius: 0.5rem;
+            }
+        }
     }
 
     .form-container {

@@ -55,15 +55,14 @@
 
         button {
             background-color: #512da8;
-            //background: linear-gradient(128.84deg,#0f6cbd 20.46%,#3c45ab 72.3%);
+            // background: linear-gradient(128.84deg,#0f6cbd 20.46%,#3c45ab 72.3%); MICROSOFT STYLE
             font-size: large;
+            width: 150px;
             color: #fff;
-            padding: 10px 45px;
+            padding: 10px 35px;
             border-radius: 0.5rem;
             border: 1px solid transparent;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-top: 10px;
+            font-weight: 600;     
             cursor: pointer;
         }
 
@@ -95,6 +94,7 @@
 
         .split-input {
             .split {
+                width: 100%;
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
@@ -104,8 +104,22 @@
         }
 
         .div-button {
+            margin-top: 10px;
             display: flex;
             justify-content: space-between;
+
+            .cancel {
+                margin-left: 0.75rem;
+                display: block;
+                width: 150px;
+                padding: 10px 35px;
+                text-align: center;
+                // border-width: 5px;
+                border: 1px solid #512da8;
+                color: #512da8;
+                text-decoration: none;
+                border-radius: 0.5rem;
+            }
         }
     }
 

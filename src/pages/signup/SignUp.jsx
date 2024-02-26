@@ -4,10 +4,12 @@ import GoogleIcon from '@mui/icons-material/Google';
 import MicrosoftIcon from '@mui/icons-material/Microsoft';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import api from './../../api/AxiosConfig'
+import Alert from '../../components/alert/Alert';
 
 const SignUp = () => {
-    // document.getElementById('button-store').style.visibility = 'hidden';
 
     // SCRIPT TO TOGGLE BETWEEN THE SIGN-UP STORE and MERCHANT
     useEffect(() => {
@@ -26,13 +28,31 @@ const SignUp = () => {
     // END OF SCRIPT
 
     const [store, setStore] = useState({
-        busName : "", busEmail : "", busPhone : "",
-        address1 : "", address2: "", city : "",
-        state : "", zipCode : "", country : ""
+        busName : "", 
+        busEmail : "", 
+        busPhone : "",
+        address1 : "", 
+        address2: "", 
+        city : "",
+        state : "", 
+        zipCode : "", 
+        country : ""
     })
     const {busName, busEmail, busPhone, address1, address2, city, state, zipCode, country } = store
 
+    const [merchant, setMerchant] = useState({
+        email : "",
+        password: "",
+        phone: "",
+        firstName: "",
+        lastName : "",
+        role: "ROLE_MERCHANT",
+        storeId: 0 
+    })
+    const {email, password, phone, firstName, lastName} = merchant;
+
     const on1stInputChange = (e) => {setStore({...store, [e.target.name]:e.target.value})};
+    const inputOn2ndChange = (e) => {setMerchant({...merchant, [e.target.name]:e.target.value})};
 
     let temp = 0;
     const on1stSubmit = async (e) => {
@@ -44,39 +64,48 @@ const SignUp = () => {
             body: JSON.stringify(store),
             headers: {"Content-type": "application/json"}
         })
-        .then((response) => {
-            console.log('Store response ', response);
-            return response.json();
-        })
+        .then(response => {return response.json()})
         .then((data) => {
-            console.log('Store id:', data);
+            console.log("Store Data ", data);
             temp = data;
-        })
-        .catch(error => {
-            console.error('Error:', error);
+            console.log("Temp ", temp);
+            setMerchant(prevMerchant => ({
+                ...prevMerchant,
+                storeId: temp // Update storeId in merchant state
+            }));
+            toast.success('Success!, Please register Merchant in Next step.', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light"
+                // transition: Bounce
+            });
             document.getElementById('storeForm').reset();
+        })
+        .catch((error) => {
+            toast.error('🦄 Error!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light"
+                // transition: Bounce
+            });
         });
         console.log("=== FETCH POST DONE ===");
     }
 
     let navigate = useNavigate();
-    const [merchant, setMerchant] = useState({
-        email : "",
-        password: "",
-        phone: "",
-        firstName: "",
-        lastName : "",
-        role: "ROLE_MERCHANT",
-        storeId: temp
-    })
-    const {email, password, phone, firstName, lastName} = merchant;
-
-    const inputOn2ndChange = (e) => {
-        setMerchant({...merchant, [e.target.name]:e.target.value})
-    };
-
     const on2ndSubmit = async (e) => {
         e.preventDefault();
+        console.log("Merchant data: ", JSON.stringify(merchant));
         console.log("=== Submit Merchant called ===");
         console.log(merchant);
         fetch("http://localhost:8080/merchants/sign-up", {
@@ -84,19 +113,26 @@ const SignUp = () => {
             body: JSON.stringify(merchant),
             headers: {"Content-type": "application/json"}
         })
-        .then((response) => {
-            // console.log('Merchant:', response.json());
-            navigate("/login");
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            document.getElementById('merchantForm').reset();
-        });
+        .then((response) => navigate("/login"))
+        .catch(error => document.getElementById('merchantForm').reset());
         console.log("=== FETCH POST DONE ===");
     }
     
     return (
         <div className='signUp'>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                transition: Bounce
+            />
             <div className="container" id='container'>
                 {/* SIGN UP MERCHANT */}
                 <div className='form-container log-in'>
@@ -182,8 +218,9 @@ const SignUp = () => {
                         <div className='div-button'>
                             <button id="signUp_1_submit" type='submit'>Sign Up</button>
                             {/* Button 1: signUp_1_Cancel  to go home */}
-                            <Link to="/">Cancel</Link>
+                            <Link className='cancel' to="/">Cancel</Link>
                         </div>
+                        <Link style={{marginTop:8}} to="/login">Already Registered?</Link>
                     </form>
                 </div>
                 {/* SIGN UP STORE */}
@@ -197,6 +234,24 @@ const SignUp = () => {
                         </div>
                         <span className='line'>OR</span><br/> */}
                         <span>Please enter Merchant's detail to finish Registeration</span>
+                        <div className='split-input'>
+                            <div className='split'>
+                                <input 
+                                    type={'text'} 
+                                    placeholder='First Name'
+                                    name='firstName'
+                                    value={firstName}
+                                    onChange={(e) => inputOn2ndChange(e)}
+                                />
+                                <input 
+                                    type={'text'} 
+                                    placeholder='Last Name'
+                                    name='lastName'
+                                    value={lastName}
+                                    onChange={(e) => inputOn2ndChange(e)}
+                                />
+                            </div>
+                        </div>
                         <input 
                             type={'text'} 
                             placeholder='Merchant Email'
@@ -218,24 +273,7 @@ const SignUp = () => {
                             // value={confirmPassword}
                             // onChange={(e) => inputOn2ndChange(e)}
                         />
-                        <div className='split-input'>
-                            <div className='split'>
-                            <input 
-                                type={'text'} 
-                                placeholder='First Name'
-                                name='firstName'
-                                value={firstName}
-                                onChange={(e) => inputOn2ndChange(e)}
-                            />
-                            <input 
-                                type={'text'} 
-                                placeholder='Last Name'
-                                name='lastName'
-                                value={lastName}
-                                onChange={(e) => inputOn2ndChange(e)}
-                            />
-                            </div>
-                        </div>
+                        
                         <input 
                             type={'text'} 
                             placeholder='Merchant Phone'
@@ -243,11 +281,13 @@ const SignUp = () => {
                             value={phone}
                             onChange={(e) => inputOn2ndChange(e)}
                         />
-                        <div>
+                        <div className='div-button'>
                             <button id="signUp_2_submit" type='submit'>Submit</button>
                             {/* Button 2: signUp_2_Cancel  to go home */}
-                            <Link to="/">Cancel</Link>
+                            <Link className='cancel' to="/">Cancel</Link>
+                            
                         </div>
+                        <Link style={{marginTop:8}} to="/login">Already Registered?</Link>
                     </form>
                 </div>
 

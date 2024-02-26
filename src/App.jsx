@@ -27,8 +27,11 @@ function App() {
             {/* PATH 1 => /sign-up  */}
             <Route path='sign-up' element={<SignUp/>} />
 
-            {/* PATH 2 => /store/**  */}
-            <Route path='panel/' element={<Layout/>}>
+            {/* 
+                PATH 2 => /v/**  
+                This is to all the Merchant Functionality
+            */}
+            <Route path='v/' element={<Layout/>}>
               <Route path='dashboard' element={<Home/>} />
               <Route path='our-team' element={<Team/>} />
               <Route path='store-rewards' element={<Rewards />} />

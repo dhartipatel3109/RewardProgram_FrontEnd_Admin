@@ -7,13 +7,20 @@ import { Link } from 'react-router-dom';
 import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import { useEffect, useRef, useState } from 'react';
 
 const Navbar = () => {
-    const toggleMenu = () => {
-        console.log("Method called")
-        let menu = document.getElementById('menu');
-        menu.classList.toggle('open-menu');
-    }
+
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    let menuRef = useRef();
+    useEffect(() => {
+        let handler = (e) => {
+            if(!menuRef.current.contains(e.target)) {
+                setIsMenuOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handler);
+    });
 
     return (
         <div className="navbar">
@@ -32,26 +39,21 @@ const Navbar = () => {
                         </div>
                     </div>
                     <div className='item'>
-                        <div className='item-form'>
-                            <img 
-                                src={logo}
-                                className='avatar' alt='profile_img'
+                        <div className='item-form' ref={menuRef}>
+                            <img src={logo} className='avatar' alt='profile_img' 
+                                onClick={() => {setIsMenuOpen(!isMenuOpen)}}
                             />
-                            <div className='sub-menu'>
+                            <div className={`sub-menu ${isMenuOpen ? 'active' : 'inactive'}`} id='sub-menu-id'>
                                 <div className='user-info'>
-                                    <img
-                                        src={logo} alt='profile_img' className='user-image'
-                                        onClick={toggleMenu}
-                                    />
-                                    <h2>Utpal Patel</h2>                                                             
-                                </div>
-                                
-                                <div className='options' id='menu'>
+                                    <img src={logo} alt='profile_img' className='user-image'/>
+                                    <h2>Utpal Patel</h2> 
+                                </div>                               
+                                <div className='options'>
                                     <div className='option'>
                                         <SettingsApplicationsIcon/>
                                         <Link to='/v/settings/store' className='link'>                            
                                             <h2>Store Setting</h2>
-                                            <span>  </span>
+                                            <span></span>
                                         </Link>
                                     </div>
                                     <div className='option'>

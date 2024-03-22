@@ -1,0 +1,32 @@
+.merchant {
+    .box {
+        display: flex;
+        flex-direction: column;
+
+        margin: 0 26% 5% 26%;
+        padding-top: 4%;
+        padding-bottom: 4%;
+        background-color: white;
+        -webkit-box-shadow: 2px 4px 10px  1px rgba(0, 0, 0, 0.47);
+        box-shadow: 0 2rem 3rem rbga(132, 139, 200, 0.18);
+        border-radius: 2vh;
+
+        display: flex;
+        justify-content: center;
+        text-align: center;
+
+        .button {
+            // background-color: #4064c2;
+            background: linear-gradient(128.84deg,#0f6cbd 20.46%,#3c45ab 72.3%);
+            font-size: large;
+            color: #fff;
+            padding: 10px 45px;
+            border-radius: 0.5rem;
+            border: 1px solid transparent;
+            font-weight: 600;
+            // text-transform: uppercase;
+            // margin-top: 10px;
+            cursor: pointer;
+        }
+    }
+}

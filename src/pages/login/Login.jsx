@@ -36,14 +36,16 @@ const Login = () => {
     const handleLoginSubmit = async (e) => {
         e.preventDefault();
         console.log("Credential passed: ", merchant);
-        fetch("http://localhost:8080/users/login", {
+        fetch("http://localhost:8080/merchants/login", {
             method: "POST",
             body: JSON.stringify(merchant),
             headers: {
                 "content-type": "application/json"
             }
         })
-        .then((response) => {return response.json()})
+        .then((response) => {
+            return response.json()
+        })
         .then((data) => {
             console.log("Data: ", data);
             navigate("/v/dashboard");

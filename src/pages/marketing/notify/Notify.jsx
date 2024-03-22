@@ -3,7 +3,7 @@ import './notify.scss'
 const Notify = () => {
     return (
         <div className='notify'>
-            Notify
+            Notify            
         </div>
     )
 }
